@@ -29,13 +29,7 @@ main {
     padding: 20px;
 }
 
-.post {
-    border: 1px solid #000;
-    border-radius: 20px; /* Adjusted border radius for rounded corners */
-    padding: 20px;
-    margin-bottom: 20px;
-    background-color: #f0f0f0;
-}
+
 
 footer {
     background-color: #000;
@@ -47,4 +41,13 @@ footer {
 .dark-mode {
     background-color: #222;
     color: #fff;
+}
+
+.delete-btn {
+    background-color: #757070;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
 }

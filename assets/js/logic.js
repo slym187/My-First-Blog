@@ -1,40 +1,57 @@
+// Retrieve post from local storage
+function getBlogEntries() {
+    const entries = JSON.parse(localStorage.getItem('blogEntries')) || [];
+    return entries;
+}
+
+// Display entries
+function displayEntries() {
+    const blogEntriesSection = document.getElementById('blog-entries');
+    const entries = getBlogEntries();
+
+    // Loop through entries and create HTML elements
+    entries.forEach((post) => {
+        const article = document.createElement('article');
+        article.classList.add('blog-entries');
+        article.innerHTML = `
+            <h2>${post.blogTitle}</h2>
+            <p>${post.blogContent}</p>
+            <p>Author: ${post.username}</p>
+            <hr>
+        `;
+        // Append article to the blog entries section
+        blogEntriesSection.appendChild(article);
+    });
+}
+
+// Save blog entries to localStorage
+function saveBlogEntries(entries) {
+    localStorage.setItem('blogEntries', JSON.stringify(entries));
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const blogForm = document.getElementById('blogForm');
 
     blogForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        // Get values from form inputs
         const username = document.getElementById('username').value;
         const blogTitle = document.getElementById('blogTitle').value;
         const blogContent = document.getElementById('blogContent').value;
 
-        // Check if any field is empty
         if (!username || !blogTitle || !blogContent) {
             alert('Please complete all fields in the form.');
             return;
         }
 
-        // Create blog post object
         const blogPost = { username, blogTitle, blogContent };
-
-        // Retrieve existing posts from localStorage
-        let existingPosts = JSON.parse(localStorage.getItem('blogEntries')) || [];
-
-        // Add new blog post to existing posts
+        let existingPosts = getBlogEntries();
         existingPosts.push(blogPost);
+        saveBlogEntries(existingPosts);
 
-        // Save updated posts back to localStorage
-        function saveBlogEntries(existingPosts) {
-            localStorage.setItem('blogEntries', JSON.stringify(existingPosts));
-        }
-
-        // Clear form fields
         blogForm.reset();
-
-        // Redirect to the blog page
-        window.location.href="blog.html";
+        window.location.href = 'blog.html';
     });
+
+    displayEntries();
 });
-
-
