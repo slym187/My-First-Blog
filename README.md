@@ -10,7 +10,7 @@ This project is a Personal Blog, it will display my thoughts and experiences.
 - chatgpt
 - Brian
 # Link To Deployed Page
-
+https://slym187.github.io/My-First-Blog/
 
 # License
 Please refer to the LICENSE in the repo.
