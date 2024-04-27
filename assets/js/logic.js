@@ -17,6 +17,7 @@ function displayEntries() {
             <h2>${post.blogTitle}</h2>
             <p>${post.blogContent}</p>
             <p>Author: ${post.username}</p>
+            
             <hr>
         `;
         // Append article to the blog entries section
@@ -39,10 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const blogTitle = document.getElementById('blogTitle').value;
         const blogContent = document.getElementById('blogContent').value;
 
-        if (!username || !blogTitle || !blogContent) {
-            alert('Please complete all fields in the form.');
-            return;
-        }
+        
 
         const blogPost = { username, blogTitle, blogContent };
         let existingPosts = getBlogEntries();
